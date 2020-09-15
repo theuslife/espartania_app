@@ -1,21 +1,47 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import store from './src/store'
+import { AppLoading } from 'expo';
+import { Provider } from 'react-redux'
+import { fetchFonts } from './src/config/fonts';
+import React, { useEffect, useState } from 'react';
+import { checkExpoServerUpdate } from './src/config/updates'
+import SwitchNav from './src/components/Navigators/SwitchNav';
+import { getNotificationsParams } from './src/config/notifications';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={{color: 'white', fontSize: 40}}>Bem vindos</Text>
-      <StatusBar style="auto" />
-    </View>                                       
-  );
+export default App = () => {
+
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  useEffect(() => {
+
+    //Check new updates
+    checkExpoServerUpdate();
+
+    //Deal with Push Notifications
+    if (!__DEV__)
+      getNotificationsParams()
+
+    return () => { }
+
+  }, [])
+
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+      >
+      </AppLoading>
+    )
+  }
+
+  if (fontLoaded) {
+    return (
+      <Provider store={store} >
+        <SwitchNav />
+      </Provider>
+    );
+  }
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#a4031f',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
