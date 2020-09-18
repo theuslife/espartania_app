@@ -1,8 +1,8 @@
 import React from 'react';
-// import LoggedInNav from './LoggedInNav';
 import LoggedOutNav from './LoggedOutNav';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
+import { View } from 'react-native';
 
 export default function SwitchNav() {
 
@@ -12,10 +12,14 @@ export default function SwitchNav() {
     <NavigationContainer>
 
       {!logged &&
-        <LoggedOutNav />
+        <LoggedOutNav isLogged={logged} />
       }
 
-      {/* {logged &&
+      {logged && 
+        <View></View>
+      }
+{/* 
+      {logged &&
         <LoggedInNav />
       } */}
 

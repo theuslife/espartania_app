@@ -1,11 +1,22 @@
-import { useDispatch } from 'react-redux';
-import React, { useEffect, useRef } from 'react';
-import { SafeAreaView, StatusBar, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, Platform } from 'react-native';
+import Colors from '../../config/colors';
+import AuthLoginFooter from './AuthLoginFooter';
+import { EspartaniaLogo } from '../Design/Imagens';
+import { useDispatch, useSelector } from 'react-redux';
+import { PrimaryTextInput } from '../Design/TextInputs';
+import { doLogin } from '../../store/actions/loginAction';
+import React, { useEffect, useRef, useState } from 'react';
+import { EspartaniaButton, SecondaryEspartaniaButton } from '../Design/Buttons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, findNodeHandle, StatusBar, Keyboard, TouchableWithoutFeedback, Dimensions, Alert } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 export default function AuthLogin({ navigation }) {
 
+    let scroll = useRef(null);
     const dispatch = useDispatch();
-    const forwardedInputRef = useRef(null);
+    let forwardedInputRef = useRef(null);
+    const { visibleErrorMsg } = useSelector(state => state.login)
 
     useEffect(() => {
 
@@ -15,69 +26,104 @@ export default function AuthLogin({ navigation }) {
 
     }, [])
 
+    useEffect(() => {
+
+        if (visibleErrorMsg) {
+            Alert.alert('Espartania', 'E-mail ou senha incorreta meu espartano(a)');
+        }
+
+        return () => { }
+
+    }, [visibleErrorMsg])
+
+    const _scrollToInput = (reactNode) => {
+        scroll.props.scrollToFocusedInput(reactNode);
+    }
+
+    const imgStyle = () => {
+        if (width <= 375) { // Iphone 6
+            return { width: 180, height: 180, }
+        }
+        if (width < 300) { // Iphone 5
+            return { width: 120, height: 120, }
+        }
+
+        if (width > 375) {
+            return { width: 240, height: 240, }
+        }
+    }
+
     return (
-        <SafeAreaView style={styles.safeAreaContainer}>
-            <KeyboardAvoidingView
-                style={{ flex: 1 }}
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <KeyboardAwareScrollView
+                ref={scroll}
+                innerRef={ref => { scroll = ref }}
             >
-                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    {/* <View style={styles.headerMiddleContainer}>
+                <View style={{ flex: 1 }}>
 
-
-                        <TuimGreenIcone
-                            style={styles.tuimGreenIconeOnTop}
-                            imgStyle={{ marginTop: 20, width: 52, height: 39 }}
+                    <View style={{ flex: 1 }}>
+                        <View style={styles.imageContainer}>
+                            <EspartaniaLogo imgStyle={imgStyle()} />
+                        </View>
+                        <PrimaryTextInput
+                            name='Email'
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            returnKeyType='next'
+                            keyboardType='email-address'
+                            placeholder='Email'
+                            onFocus={(event) => {
+                                _scrollToInput(findNodeHandle(event.target))
+                            }}
+                            onSubmitEditing={() => forwardedInputRef.current.focus()}
                         />
+                        <PrimaryTextInput
+                            name='Senha'
+                            secureTextEntry={true}
+                            keyboardType='default'
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            placeholder='Senha'
+                            forwardedInputRef={forwardedInputRef}
+                        />
+                        <Text style={{
+                            textAlign: 'right',
+                            marginRight: '10%',
+                            color: Colors.primaryRed,
+                            fontSize: 15,
+                            marginVertical: 10
+                        }}>
+                            Esqueceu a senha?
+                        </Text>
 
-
-                        <View style={styles.headerTitleContainer}>
-                            <Text style={styles.commonStyleText}>Já tenho uma conta Tuim?</Text>
-                        </View>
-
-
-                        <View style={styles.middleInputAndButtonContainer}>
-
-                            <PrimaryTextInput
-                                autoCorrect={false}
-                                returnKeyType='next'
-                                placeholder='E-mail'
-                                // onFocus={() => setCollapsed(true)}
-                                onSubmitEditing={() => forwardedInputRef.current.focus()}
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
+                            <EspartaniaButton
+                                espartaniaButtonText='Efetuar Login'
+                                styleContainer={{ marginTop: 15 }}
+                                onPress={() => {
+                                    dispatch(doLogin('xtheus@gmail.com', 'espartania'))
+                                }}
                             />
-
-                            <PrimaryTextInput
-                                placeholder='Senha'
-                                // onFocus={() => {
-                                //     setCollapsed(true)
-                                // }}
-                                forwardedInputRef={forwardedInputRef}
-                            />
-
-                            <TuimButton
-                                tuimButtonText='Efetuar Login'
-                                styleContainer={{ marginTop: 5 }}
-                                onPress={() => dispatch(doLogin())}
-                            />
-                        </View>
-
-
-                        <View style={styles.footerContainer}>
-                            <Text style={styles.commonStyleText}>Sou novo por aqui!</Text>
-                            <SecondaryTuimButton
-                                styleContainer={{ marginTop: 10 }}
-                                tuimButtonText='Criar uma nova conta'
-                                onPress={() => navigation.navigate('AuthRegister')}
+                            <SecondaryEspartaniaButton
+                                espartaniaButtonText='Criar nova conta'
+                                styleContainer={{ marginTop: 15 }}
+                                onPress={() => {
+                                    // dispatch(doLogin())
+                                }}
                             />
                         </View>
 
+                        <AuthLoginFooter />
 
-                    </View> */}
+                    </View>
 
-                </TouchableWithoutFeedback>
-            </KeyboardAvoidingView>
-        </SafeAreaView>
+                </View>
+                {/* </ScrollView> */}
+            </KeyboardAwareScrollView>
+        </TouchableWithoutFeedback>
     )
+
+
 }
 
 const styles = {
@@ -85,57 +131,18 @@ const styles = {
         flex: 1,
         backgroundColor: 'white'
     },
-    headerMiddleContainer: {
-        flex: 8,
-        backgroundColor: 'white'
-    },
-    headerTitleContainer: {
+    imageContainer: {
         flex: 0.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    middleInputAndButtonContainer: {
-        flex: 0.8,
-        alignItems: 'center',
         justifyContent: 'center',
+        borderBottomEndRadius: 40,
+        borderBottomStartRadius: 40,
+        backgroundColor: Colors.primaryRed,
+        marginBottom: 50,
     },
-    footerContainer: {
-        flex: 0.7,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
     },
-    tuimGreenIconeOnTop: {
-        top: 40,
-        right: -5,
-        width: 70,
-        height: 70,
-        zIndex: 990,
-        elevation: 999,
-        borderRadius: 45,
-        position: 'absolute',
-        backgroundColor: '#00C830',
-        transform: [{ rotate: '30deg' }],
-    },
-    commonStyleText: {
-        fontSize: 20,
-        color: '#0A3251',
-        textAlign: 'center',
-        fontFamily: 'Barlow-bold'
-    },
-    inputLogin: {
-        height: 40,
-        padding: 10,
-        width: '80%',
-        elevation: 3,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        borderWidth: .2,
-        marginVertical: 5,
-        shadowColor: "#000",
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        backgroundColor: 'white',
-    }
 }

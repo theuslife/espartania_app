@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "espartania_app",
-    "slug": "espartania_app",
+    "name": "Tuim Mobile",
+    "description": "...",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "slug": "tuim-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "platforms": [
-      "android",
-      "ios"
-   ],
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -22,6 +23,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "useNextNotificationsApi": true
     },
     "web": {
       "favicon": "./assets/favicon.png"

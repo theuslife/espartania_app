@@ -1,6 +1,6 @@
 
 import * as Updates from 'expo-updates';
-import { AlertTuim } from '../components/Design/Alerts';
+import { AlertEspartania } from '../components/Design/Alerts';
 import axios from 'axios';
 
 // -- Para quando tiver o primeiro build do app na loja --
@@ -27,7 +27,7 @@ export const checkExpoServerUpdate = async () => {
         const { isNew } = await Updates.fetchUpdateAsync()
 
         if (isNew) {
-            AlertTuim('Nova versão do aplicativo disponível, seu aplicativo será reiniciado', async () =>
+            AlertEspartania('Nova versão do aplicativo disponível, seu aplicativo será reiniciado', async () =>
                 await Updates.reloadAsync()
             )
         }

@@ -1,11 +1,10 @@
 import React from 'react'
 import AuthLogin from '../Auth/AuthLogin';
-import { tuimHeader } from '../Design/commonStyle';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-export default function LoggedOutNav({ isLogged, doLogin }) {
+export default function LoggedOutNav({ isLogged }) {
     return (
         <Stack.Navigator
             initialRouteName="AuthLogin"
@@ -13,12 +12,19 @@ export default function LoggedOutNav({ isLogged, doLogin }) {
             <Stack.Screen
                 name='AuthLogin'
                 component={AuthLogin}
-                doLogin={doLogin}
-                // options={{
-                //     ...tuimHeader,
-                //     animationTypeForReplace: isLogged ? 'pop' : 'push'
-                // }}
+                options={{
+                    headerShown: false,
+                    animationTypeForReplace: isLogged ? 'pop' : 'push'
+                }}
             />
+            {/* <Stack.Screen
+                name='AuthRegister'
+                component={AuthRegister}
+                options={{
+                    ...tuimHeader,
+                    animationTypeForReplace: isLogged ? 'pop' : 'push'
+                }}
+            /> */}
         </Stack.Navigator>
     )
 }

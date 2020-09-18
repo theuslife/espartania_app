@@ -1,7 +1,7 @@
-export const AlertTuim = (title, onPress ) => (
+export const AlertEspartania = (title, onPress ) => (
 
     Alert.alert(
-        'Tuim Mobile',
+        'Espartania',
         title,
         [
             {
