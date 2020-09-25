@@ -4,7 +4,7 @@ import { SocialIcon } from 'react-native-elements';
 
 export default function AuthLoginFooter() {
     return (
-        <View style={{ marginTop: 30 }}>
+        <View style={{ marginTop: 15 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{
                     width: '23%',

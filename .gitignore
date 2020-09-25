@@ -1,7 +1,6 @@
 node_modules/**/*
-assets/**/*
+assets/
 .expo/*
-.assets/*
 npm-debug.*
 *.jks
 *.p8
@@ -13,4 +12,3 @@ web-build/
 
 # macOS
 .DS_Store
-.assets

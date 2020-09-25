@@ -1,10 +1,10 @@
 import Colors from '../../config/colors';
 import AuthLoginFooter from './AuthLoginFooter';
+import React, { useEffect, useRef } from 'react';
 import { EspartaniaLogo } from '../Design/Imagens';
 import { useDispatch, useSelector } from 'react-redux';
 import { PrimaryTextInput } from '../Design/TextInputs';
 import { doLogin } from '../../store/actions/loginAction';
-import React, { useEffect, useRef, useState } from 'react';
 import { EspartaniaButton, SecondaryEspartaniaButton } from '../Design/Buttons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { View, Text, findNodeHandle, StatusBar, Keyboard, TouchableWithoutFeedback, Dimensions, Alert } from 'react-native';
@@ -68,6 +68,8 @@ export default function AuthLogin({ navigation }) {
                         <PrimaryTextInput
                             name='Email'
                             autoCapitalize='none'
+                            iconType='material-community'
+                            iconName='email'
                             autoCorrect={false}
                             returnKeyType='next'
                             keyboardType='email-address'
@@ -80,6 +82,8 @@ export default function AuthLogin({ navigation }) {
                         <PrimaryTextInput
                             name='Senha'
                             secureTextEntry={true}
+                            iconType='font-awesome'
+                            iconName='lock'
                             keyboardType='default'
                             autoCapitalize='none'
                             autoCorrect={false}

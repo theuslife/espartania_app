@@ -1,87 +1,65 @@
-// import React from 'react';
-// import Welcome from '../Welcome/Welcome';
-// import Scanner from '../Scanner/Scanner';
-// import Product from '../Product/Product';
-// import { useSelector } from 'react-redux';
-// import UserSettings from '../User/UserSettings';
-// import LockerUnlock from '../Locker/LockerUnlock';
-// import LockerThanks from '../Locker/LockerThanks';
-// import Evaluation from '../Evaluation/Evaluation';
-// import LockerReturn from '../Locker/LockerReturn';
-// import { tuimHeader } from '../Design/commonStyle';
-// import ProductDetail from '../Product/ProductDetail';
-// import ProductMyList from '../Product/ProductMyList';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import PaymentCardRegister from '../Payment/PaymentCardRegister';
+import React from 'react';
+import Colors from '../../config/colors';
+import { useSelector } from 'react-redux';
+import MainStackNav from './MainStackNav';
+import { Icon } from 'react-native-elements';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-// const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-// export default function LoggedIn() {
+export default function LoggedInNav() {
 
-//     const { logged } = useSelector(state => state.login)
+    const { logged } = useSelector(state => state.login)
 
-//     return (
-//         <Stack.Navigator
-//             initialRouteName="Welcome"
-//         >
-//             <Stack.Screen
-//                 name='Welcome'
-//                 component={Welcome}
-//                 options={{ headerShown: false }}
-//             />
-//             <Stack.Screen
-//                 name='Scanner'
-//                 component={Scanner}
-//                 options={{
-//                     ...tuimHeader,
-//                     animationTypeForReplace: logged ? 'push' : 'pop'
-//                 }}
-//             />
-//             <Stack.Screen
-//                 name='Product'
-//                 component={Product}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='ProductDetail'
-//                 component={ProductDetail}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='ProductMyList'
-//                 component={ProductMyList}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='UserSettings'
-//                 component={UserSettings}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='PaymentCardRegister'
-//                 component={PaymentCardRegister}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='LockerUnlock'
-//                 component={LockerUnlock}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='LockerThanks'
-//                 component={LockerThanks}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='LockerReturn'
-//                 component={LockerReturn}
-//                 options={tuimHeader}
-//             />
-//             <Stack.Screen
-//                 name='Evaluation'
-//                 component={Evaluation}
-//                 options={tuimHeader}
-//             />
-//         </Stack.Navigator>
-//     )
-// }
+    return (
+        <Tab.Navigator
+            initialRouteName="Dashboard"
+            tabBarOptions={{
+                activeTintColor: Colors.primaryRed,
+                inactiveTintColor: 'gray'
+            }}
+        >
+            <Tab.Screen
+                name='Dashboard'
+                component={MainStackNav}
+                options={{
+                    tabBarLabel: 'Início',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="home" color={color} size={20} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name='Explorar'
+                component={MainStackNav}
+                options={{
+                    tabBarLabel: 'Explorar',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="explore" type='materialicons-' color={color} size={20} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name='Premium'
+                component={MainStackNav}
+                options={{
+                    tabBarLabel: 'Premium',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="trophy" color={color} size={20} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name='Artigos'
+                component={MainStackNav}
+                options={{
+                    tabBarLabel: 'Artigos',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="cast-education" type='material-community' color={color} size={20} />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    )
+}

@@ -1,17 +1,18 @@
 import React from 'react'
-import { TextInput, View, Text } from 'react-native'
 import Colors from '../../config/colors';
+import { TextInput, View, Text } from 'react-native'
+import { Icon } from 'react-native-elements';
 
 export function PrimaryTextInput(props) {
 
-    const { style = {}, forwardedInputRef, name = '' } = props;
+    const { style = {}, forwardedInputRef, name = '', iconName, iconType } = props;
 
     return (
         <View style={{ width: '100%', marginVertical: 10, }}>
 
             <Text style={{
                 marginLeft: '10%',
-                top: 5,
+                top: 20,
                 fontSize: 14,
                 zIndex: 99,
                 color: Colors.primaryRed
@@ -21,6 +22,9 @@ export function PrimaryTextInput(props) {
                 width: '100%',
                 alignItems: 'center',
             }}>
+                <View style={{ width: '80%', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end', top: 30}}>
+                    <Icon name={iconName} type={iconType} color={'gray'} />
+                </View>
                 <TextInput
                     {...props}
                     ref={forwardedInputRef}

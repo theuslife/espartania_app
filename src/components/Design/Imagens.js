@@ -1,18 +1,14 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import resources from '../../config/resources'
-const { logo, logo2, logo_transparent, logo_transparent_2, background, headerLogo2 } = resources
+const { logo, logo2, logo_transparent, logo_transparent_2, logo_transparent_3, background, headerLogo2 } = resources
 
 export function EspartanialogoOnTop({ imgStyle }) {
     return (
-        <View style={styles.espartanialogoOnTop} >
-            <View style={styles.middleFlex}>
-                <Image
-                    source={headerLogo2}
-                    style={[{ width: 120, height: 35 }, imgStyle]}
-                />
-            </View>
-        </View>
+        <Image
+            source={logo_transparent_3}
+            style={[{ width: 110, height: 30 }, imgStyle]}
+        />
     )
 }
 
@@ -41,13 +37,10 @@ export function EspartaniaImageBackground({ imgStyle }) {
 const styles = {
     middleFlex: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     espartanialogoOnTop: {
-        height: 35,
-        paddingVertical: 5,
-        width: 120,
-        backgroundColor: '#FFF',
+        height: 30,
+        width: 100,
+        marginRight: 50,
     },
 }
