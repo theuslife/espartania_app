@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import resources from '../../config/resources'
-const { logo, logo2, logo_transparent, logo_transparent_2, logo_transparent_3, background, headerLogo2 } = resources
+const { logo2, logo_transparent_3, background } = resources
 
 export function EspartanialogoOnTop({ imgStyle }) {
     return (

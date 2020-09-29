@@ -51,6 +51,16 @@ export default function LoggedInNav() {
                 }}
             />
             <Tab.Screen
+                name='Comunidade'
+                component={MainStackNav}
+                options={{
+                    tabBarLabel: 'Comunidade',
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="network" type='entypo' color={color} size={20} />
+                    ),
+                }}
+            />
+            <Tab.Screen
                 name='Artigos'
                 component={MainStackNav}
                 options={{

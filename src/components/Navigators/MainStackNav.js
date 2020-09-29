@@ -3,6 +3,7 @@ import Premium from '../Premium/PremiumCoach';
 import Dashboard from '../Dashboard/Dashboard';
 import { espartaniaHeader } from '../Design/commonStyle';
 import { createStackNavigator } from '@react-navigation/stack';
+import Exercises from '../Exercises/Exercises';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,14 @@ export default function MainStackNav(props) {
             <Stack.Screen
                 name='Dashboard'
                 component={Dashboard}
+                options={{
+                    // headerShown: false,
+                    ...espartaniaHeader,
+                }}
+            />
+            <Stack.Screen
+                name='Exercises'
+                component={Exercises}
                 options={{
                     // headerShown: false,
                     ...espartaniaHeader,

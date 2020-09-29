@@ -1,21 +1,20 @@
 import * as React from 'react';
-import { EspartanialogoOnTop } from "./Imagens";
 import { Avatar } from './Avatares';
 import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Colors from '../../config/colors';
+import { EspartanialogoOnTop } from "./Imagens";
 
 export const espartaniaHeader = {
-    headerShown: true,
-    headerBackTitleVisible: false,
     headerTitle: '',
+    headerShown: true,
     headerTitleAlign: 'center',
+    headerBackTitleVisible: false,
     headerLeft: (props) => (<EspartanialogoOnTop propsNav={props} />),
     headerRight: (props) => (
-        <View style={{ flexDirection: 'row' , justifyContent: 'center', alignItems: 'center'}}>
-            <View style={{ marginRight: 25 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            {/* <View style={{ marginRight: 25 }}>
                 <Icon name="filter" type='font-awesome' color={'gray'} size={20} />
-            </View>
+            </View> */}
             <View style={{ marginRight: 25 }}>
                 <Icon name="bell" type='font-awesome' color={'gray'} size={20} />
             </View>
@@ -29,6 +28,16 @@ export const espartaniaHeader = {
     headerLeftContainerStyle: {
         margin: 5
     }
+}
+
+export const blackShadow = {
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 }
 
 export const primaryBackgroundRed = {

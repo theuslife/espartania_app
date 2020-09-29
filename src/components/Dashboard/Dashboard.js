@@ -1,9 +1,9 @@
 import React from 'react'
-import Colors from '../../config/colors';
 import resources from '../../config/resources';
-import { View, Text, StatusBar, Image } from 'react-native';
+import DashboardCardButton from './DashboardCardButton';
+import { View, StatusBar, ScrollView } from 'react-native';
 
-export default function Dashboard() {
+export default function Dashboard({ navigation: { navigate } }) {
 
     React.useEffect(() => {
 
@@ -21,79 +21,86 @@ export default function Dashboard() {
         <View style={{
             flex: 1,
             backgroundColor: '#f8f8ff',
-            flexDirection: 'row',
-            justifyContent: 'center'
         }}>
-            <View
-                style={{
-                    marginVertical: 20,
-                    marginHorizontal: 10,
-                    width: '40%',
-                    height: 150,
-                    borderRadius: 12.5,
-                    backgroundColor: '#FFF',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 0,
-                        height: 1,
-                    },
-                    elevation: 3,
-                    shadowOpacity: 0.22,
-                    shadowRadius: 2.22,
-                }}
-            >
 
-                <Image
-                    source={resources.pull_up_icon}
-                    style={[{ width: 60, height: 60, marginTop: 20 }]}
-                />
-                <Text style={{
-                    fontFamily: 'Cinzel-Medium',
-                    marginTop: 10,
-                    fontSize: 15,
-                    color: Colors.secondaryRed
-                }}>
-                    Barra Fixa
-                </Text>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-            </View>
-            <View
-                style={{
-                    marginVertical: 20,
-                    marginHorizontal: 10,
-                    width: '40%',
-                    height: 150,
-                    borderRadius: 12.5,
-                    backgroundColor: '#FFF',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 0,
-                        height: 1,
-                    },
-                    elevation: 3,
-                    shadowOpacity: 0.22,
-                    shadowRadius: 2.22,
-                }}
-            >
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.pull_up_icon}
+                        title='Barra Fixa'
+                    />
 
-                <Image
-                    source={resources.push_up_icon}
-                    style={[{ width: 60, height: 60, marginTop: 20 }]}
-                />
-                <Text style={{
-                    fontFamily: 'Cinzel-Medium',
-                    marginTop: 10,
-                    fontSize: 15,
-                    color: Colors.secondaryRed
-                }}>
-                    Flexões
-                </Text>
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.push_up_icon}
+                        title='Flexões'
+                    />
+                </View>
 
-            </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.brain}
+                        title='Mentalidade'
+                    />
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.cardio}
+                        title='Cárdio'
+                    />
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.rings}
+                        title='Argolas'
+                    />
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.dip_bar}
+                        title='Paralelas'
+                    />
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.core}
+                        title='Core'
+                    />
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.legs}
+                        title='Inferiores'
+                    />
+
+                </View>
+
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.arm}
+                        title='Braços'
+                    />
+
+                    <DashboardCardButton
+                        onPress={() => navigate('Exercises')}
+                        sourceImg={resources.meditation}
+                        title='Mobilidade'
+                    />
+
+                </View>
+
+
+            </ScrollView>
 
         </View>
     )
