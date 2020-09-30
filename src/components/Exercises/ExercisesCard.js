@@ -1,15 +1,20 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import Colors from '../../config/colors';
+import resources from '../../config/resources';
 
-export default function ExercisesCard() {
+export default function ExercisesCard({sourceImg = require('../../../assets/IMG_6480.png')}) {
     return (
         <View style={[styles.containerCard]}>
-
+            <Image
+                source={sourceImg}
+                style={[{ width: '100%', height: '100%', borderRadius: 12.5 }]}
+            />
             <View style={{ flex: 1, alignItems: 'flex-end', flexDirection: 'row' }}>
 
-                <View style={[styles.bottomContainerCard, { backgroundColor: Colors.secondaryRed}]}>
-                    <Text style={{ color: '#fff', fontSize: 16, fontFamily: 'Cinzel-Bold' }}>
+
+                <View style={[styles.bottomContainerCard, { backgroundColor: Colors.neve}]}>
+                    <Text style={{ color: '#000', fontSize: 16, fontFamily: 'Cinzel-Bold' }}>
                         (Nível 1)
                 </Text>
                 </View>
@@ -39,7 +44,7 @@ const styles = {
     },
     bottomContainerCard: {
         flex: 1,
-        height: 30,
+        height: 25,
         width: 100,
         flexDirection: 'row',
         alignItems: 'center',
@@ -48,6 +53,6 @@ const styles = {
         borderTopStartRadius: 5,
         borderBottomEndRadius: 5,
         borderBottomLeftRadius: 5,
-        backgroundColor: Colors.secondaryRed,
+        backgroundColor: Colors.secondaryReb,
     }
 }

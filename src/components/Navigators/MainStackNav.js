@@ -1,9 +1,9 @@
 import React from 'react'
 import Premium from '../Premium/PremiumCoach';
 import Dashboard from '../Dashboard/Dashboard';
+import Exercises from '../Exercises/Exercises';
 import { espartaniaHeader } from '../Design/commonStyle';
 import { createStackNavigator } from '@react-navigation/stack';
-import Exercises from '../Exercises/Exercises';
 
 const Stack = createStackNavigator();
 

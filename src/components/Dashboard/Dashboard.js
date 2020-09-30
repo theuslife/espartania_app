@@ -1,7 +1,7 @@
 import React from 'react'
 import resources from '../../config/resources';
 import DashboardCardButton from './DashboardCardButton';
-import { View, StatusBar, ScrollView } from 'react-native';
+import { View, StatusBar, ScrollView, SafeAreaView } from 'react-native';
 
 export default function Dashboard({ navigation: { navigate } }) {
 
@@ -18,91 +18,93 @@ export default function Dashboard({ navigation: { navigate } }) {
     }, [])
 
     return (
-        <View style={{
-            flex: 1,
-            backgroundColor: '#f8f8ff',
-        }}>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#f8f8ff'}}>
+            <View style={{
+                flex: 1,
+                backgroundColor: '#f8f8ff',
+            }}>
 
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.pull_up_icon}
-                        title='Barra Fixa'
-                    />
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.pull_up_icon}
+                            title='Barra Fixa'
+                        />
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.push_up_icon}
-                        title='Flexões'
-                    />
-                </View>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.push_up_icon}
+                            title='Flexões'
+                        />
+                    </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.brain}
-                        title='Mentalidade'
-                    />
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.brain}
+                            title='Mentalidade'
+                        />
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.cardio}
-                        title='Cárdio'
-                    />
-                </View>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.cardio}
+                            title='Cárdio'
+                        />
+                    </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.rings}
-                        title='Argolas'
-                    />
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.rings}
+                            title='Argolas'
+                        />
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.dip_bar}
-                        title='Paralelas'
-                    />
-                </View>
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.dip_bar}
+                            title='Paralelas'
+                        />
+                    </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.core}
-                        title='Core'
-                    />
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.core}
+                            title='Core'
+                        />
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.legs}
-                        title='Inferiores'
-                    />
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.legs}
+                            title='Inferiores'
+                        />
 
-                </View>
+                    </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.arm}
-                        title='Braços'
-                    />
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.arm}
+                            title='Braços'
+                        />
 
-                    <DashboardCardButton
-                        onPress={() => navigate('Exercises')}
-                        sourceImg={resources.meditation}
-                        title='Mobilidade'
-                    />
+                        <DashboardCardButton
+                            onPress={() => navigate('Exercises')}
+                            sourceImg={resources.meditation}
+                            title='Mobilidade'
+                        />
 
-                </View>
+                    </View>
 
 
-            </ScrollView>
+                </ScrollView>
 
-        </View>
+            </View>
+        </SafeAreaView>
     )
 
 

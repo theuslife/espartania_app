@@ -122,7 +122,6 @@ export default function AuthLogin({ navigation }) {
                     </View>
 
                 </View>
-                {/* </ScrollView> */}
             </KeyboardAwareScrollView>
         </TouchableWithoutFeedback>
     )
@@ -137,12 +136,12 @@ const styles = {
     },
     imageContainer: {
         flex: 0.5,
+        marginBottom: 50,
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomEndRadius: 40,
         borderBottomStartRadius: 40,
         backgroundColor: Colors.primaryRed,
-        marginBottom: 50,
     },
     image: {
         flex: 1,

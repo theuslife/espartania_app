@@ -36,6 +36,7 @@ export const blackShadow = {
         width: 0,
         height: 1,
     },
+    elevation: 3,
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
 }

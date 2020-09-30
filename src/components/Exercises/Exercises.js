@@ -3,9 +3,10 @@ import ExercisesCard from './ExercisesCard';
 import resources from '../../config/resources';
 import React, { useEffect, useState } from 'react';
 import Collapsible from 'react-native-collapsible';
-import ExercisesLineCollap from './ExercisesLineCollap';
-import { View, SafeAreaView, ScrollView, Text, Image } from 'react-native';
 import { blackShadow } from '../Design/commonStyle';
+import ExercisesLineCollap from './ExercisesLineCollap';
+import ExercisesCardVertical from './ExercisesCardVertical';
+import { View, SafeAreaView, ScrollView, Text, Image } from 'react-native';
 
 export default function Exercises() {
 
@@ -41,80 +42,90 @@ export default function Exercises() {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: Colors.neve }}>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                showsVerticalScrollIndicator={false}
+            >
 
-                <View style={{ height: 300, alignItems: 'center', }}>
-                    <View style={styles.firstContainerImg}>
-                        <View style={styles.secondContainerImg}>
-                            <Image
-                                source={resources.pull_up_icon}
-                                style={[{ width: 60, height: 60, marginTop: 20 }]}
-                            />
-                        </View>
-                    </View>
-
-                    <Text style={styles.title}>Barra fixa</Text>
-
+                {/* <View style={{ height: 320, }}> */}
                     <View style={[blackShadow, {
-                        width: '90%',
-                        marginVertical: 10,
-                        height: 120,
+                        alignItems: 'center',
+                        width: 120,
+                        height: 170,
+                        marginTop: 10,
+                        marginHorizontal: 10,
                         borderRadius: 10,
-                        backgroundColor: '#FFF',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center'
+                        backgroundColor: 'white'
                     }]}>
-                        <Text style={{ fontFamily: 'Cinzel-Medium', textAlign: 'center', marginHorizontal: 10}}>
-                            Os exercícios são medidos por níveis de dificuldade:
-                            Iniciante, Intermediário e Avançado
-                            </Text>
-                        {/* <View style={{
-                            height: 60,
-                            width: 60,
-                            borderRadius: 30,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: 'black',
-                        }}></View> */}
+                        <View style={styles.firstContainerImg}>
+                            <View style={styles.secondContainerImg}>
+                                <Image
+                                    source={resources.pull_up_icon}
+                                    style={[{ width: 60, height: 60, marginTop: 20 }]}
+                                />
+                            </View>
+                        </View>
+
+                        <Text style={styles.title}>Barra fixa</Text>
                     </View>
 
-                </View>
+                    <View style={styles.horizontalScrollViewContainer}>
+                        <ScrollView
+                            horizontal contentContainerStyle={{ flexGrow: 1 }}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            <View style={[blackShadow, styles.horizontalCardsContainer]}>
+                                <Text style={styles.textHorizontalCard}>
+                                    Primeira Barra Fixa, Muscle Up, Front-Lever e muito mais você encontra neste tópico
+                                </Text>
+                            </View>
+
+                            <View style={[blackShadow, styles.horizontalCardsContainer]}>
+                                <Text style={styles.textHorizontalCard}>
+                                    Iniciante, intermediário e avançado são as três categórias
+                                </Text>
+                            </View>
+
+                            <View style={[blackShadow, styles.horizontalCardsContainer]}>
+                                <Text style={styles.textHorizontalCard}>
+                                    Selecione uma categória e um exercício para ter acesso a um vídeo autoexplicativo
+                                    e ainda dicas valiosas
+                                </Text>
+                            </View>
+
+                        </ScrollView>
+                    </View>
+
+
+                {/* </View> */}
 
                 <View>
 
-                    <ExercisesLineCollap
+                    <ExercisesCardVertical
                         activeOpacity={1}
-                        title={`Iniciantes`}
+                        isCollapsed={isCollapsed}
+                        titleLine={`Iniciantes`}
                         iconName={iconName}
-                        textBeforeIcon={textBeforeIcon}
-                        onPress={() => setCollapsed()}
+                        // textBeforeIcon={textBeforeIcon}
+                        setCollapsed={() => setCollapsed()}
+                    />
+                    <ExercisesCardVertical
+                        activeOpacity={1}
+                        // isCollapsed={isCollapsed}
+                        titleLine={`Intermediário`}
+                        iconName={iconName}
+                        // textBeforeIcon={textBeforeIcon}
+                        setCollapsed={() => setCollapsed()}
                     />
 
-                    <Collapsible collapsed={isCollapsed}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
 
-                            <ExercisesCard />
-
-                            <ExercisesCard />
-
-                        </View>
-                    </Collapsible>
-
-                    <Collapsible collapsed={!isCollapsed}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <ExercisesCard />
-                            <ExercisesCard />
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <ExercisesCard />
-                            <ExercisesCard />
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <ExercisesCard />
-                            <ExercisesCard />
-                        </View>
-                    </Collapsible>
+                    <ExercisesLineCollap
+                        activeOpacity={1}
+                        title={`Avançado`}
+                        iconName={iconName}
+                        // textBeforeIcon={textBeforeIcon}
+                        onPress={() => setCollapsed()}
+                    />
 
                 </View>
             </ScrollView>
@@ -123,22 +134,57 @@ export default function Exercises() {
 }
 
 const styles = {
-    containerCard: {
-        height: 170,
-        elevation: 3,
-        width: '45%',
-        borderRadius: 12.5,
+    horizontalScrollViewContainer: {
+        // height: 170,
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.neve,
+        // backgroundColor: '#fff',
+    },
+    horizontalCardsContainer: {
+        width: 300,
+        height: 120,
+        borderRadius: 10,
         marginVertical: 10,
         marginHorizontal: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: '#FFF',
+        // backgroundColor: Colors.neve,
         justifyContent: 'center',
-        shadowColor: "#000",
+    },
+    textHorizontalCard: {
+        fontSize: 14,
+        color: 'black',
+        textAlign: 'center',
+        marginHorizontal: 10,
+        fontFamily: 'Cinzel-Medium',
+    },
+    title: {
+        fontSize: 20,
+        color: 'black',
+        marginVertical: 10,
+        fontFamily: 'Cinzel-Medium',
+        color: Colors.secondaryRed,
+    },
+    firstContainerImg: {
+        marginTop: 20,
+        width: 95,
+        height: 95,
+        borderRadius: 47.5,
         shadowOffset: {
             width: 0,
             height: 1,
         },
-        shadowOpacity: 0.22,
+        elevation: 3,
         shadowRadius: 2.22,
+        shadowColor: "#000",
+        shadowOpacity: 0.22,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.secondaryRed,
     },
     secondContainerImg: {
         height: 90,
@@ -148,40 +194,4 @@ const styles = {
         justifyContent: 'center',
         backgroundColor: '#fff',
     },
-    title: {
-        marginTop: 10,
-        fontSize: 20,
-        fontFamily: 'Cinzel-Medium',
-        color: Colors.secondaryRed
-    },
-    firstContainerImg: {
-        marginTop: 20,
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        elevation: 3,
-        shadowRadius: 2.22,
-        shadowColor: "#000",
-        shadowOpacity: 0.22,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: Colors.secondaryRed,
-    },
-    bottomContainerCard: {
-        flex: 1,
-        height: 30,
-        width: 100,
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderTopRightRadius: 5,
-        justifyContent: 'center',
-        borderTopStartRadius: 5,
-        borderBottomEndRadius: 5,
-        borderBottomLeftRadius: 5,
-        backgroundColor: Colors.secondaryRed,
-    }
 }
